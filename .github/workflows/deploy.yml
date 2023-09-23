@@ -31,11 +31,8 @@ jobs:
       - name: Move Nodeapp Contents
         run: |
           # Navigate to the "nodeapp" folder
-          cd $GITHUB_WORKSPACE/nodeapp
-
-          # Move the contents of the "nodeapp" folder up one level
-          shopt -s dotglob
-          mv * ../
+          mv nodeapp/* ../
+          ls -la
 
           # Remove the now-empty "nodeapp" folder
           rm -rf ../nodeapp
