@@ -26,6 +26,16 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: nodeapp/
+      - name: Move Nodeapp Contents
+        run: |
+          # Navigate to the "nodeapp" folder
+          cd $GITHUB_WORKSPACE/nodeapp
+
+          # Move the contents of the "nodeapp" folder up one level
+          mv * ../
+
+          # Remove the now-empty "nodeapp" folder
+          rm -rf ../nodeapp
       - name: List files
         run: ls -la
       - name: Cache dependencies
