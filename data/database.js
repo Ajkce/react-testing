@@ -13,10 +13,11 @@ console.log("Trying to connect to db");
 
 try {
   await client.connect();
+  console.log("connected");
   await client.db(dbName).command({ ping: 1 });
   console.log("Connected successfully to server");
 } catch (error) {
-  console.log("Connection failed.");
+  console.log("Connection failed connection failed.");
   await client.close();
   console.log("Connection closed.");
 }
