@@ -27,6 +27,8 @@ jobs:
         with:
           repository: Ajkce/react-testing
           path: nodeapp/
+      - name: List files
+        run: ls -la nodeapp/
       - name: move contents
         run: |
           mv nodeapp/* .  # Move the contents of nodeapp to the current directory
