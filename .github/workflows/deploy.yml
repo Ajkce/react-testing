@@ -4,7 +4,7 @@ on:
     paths:
       - "actions/**"
     branches:
-      - main
+      - master
       - dev
 jobs:
   test:
