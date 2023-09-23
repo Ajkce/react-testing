@@ -35,7 +35,7 @@ jobs:
         run: npm ci
       - name: Run server
         run: |
-          echo: the port is $PORT
+          echo "the port is $PORT"
           npm start & npx wait-on http://127.0.0.1:$PORT
       - name: Run tests
         run: npm test
