@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
-        uses: actions/nodeapp/checkout@v3
+        uses: Ajkce/react-testing/nodeapp/actions/checkout@v3
         with:
           repository: Ajkce/react-testing
       - name: List files
