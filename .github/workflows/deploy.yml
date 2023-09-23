@@ -24,15 +24,8 @@ jobs:
     steps:
       - name: Get Code
         uses: actions/checkout@v3
-      - name: Sparse Checkout
-        run: |
-          # Navigate to the repository root
-          cd $GITHUB_WORKSPACE
-
-          # Perform a sparse checkout to get specific files or folders
-          git sparse-checkout set nodeapp
-      - name: List files
-        run: ls -la nodeapp/
+        with:
+          path: nodeapp/
       - name: List files
         run: ls -la
       - name: Cache dependencies
