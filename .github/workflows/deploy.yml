@@ -27,6 +27,8 @@ jobs:
         with:
           repository: Ajkce/react-testing
           path: nodeapp
+      - name: List files
+        run: ls -la
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
