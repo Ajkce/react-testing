@@ -30,7 +30,7 @@ jobs:
           cd $GITHUB_WORKSPACE
 
           # Perform a sparse checkout to get specific files or folders
-          git sparse-checkout set nodeapp/*
+          git sparse-checkout set nodeapp
       - name: List files
         run: ls -la nodeapp/
       - name: List files
