@@ -5,7 +5,7 @@ const dbUser = process.env.MONGODB_USERNAME;
 const dbPassword = process.env.MONGODB_PASSWORD;
 const dbName = process.env.MONGODB_DB_NAME;
 
-const uri = `mongodb+srv://${dbUser}:${dbPassword}@${clusterAddress}/?retryWrites=true&w=majority&appName=AtlasApp`;
+const uri = `mongodb+srv://ajaya:Ajayakc13101@cluster0.nba51dt.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp`;
 
 const client = new MongoClient(uri);
 
