@@ -1,43 +1,16 @@
 name: Deployment
 on:
   push:
-    paths:
-      - "actions/**"
-      - ".github/**"
     branches:
-      - master
+      - main
       - dev
-#Defining env variable on work level
-env:
-  MONGODB_DB_NAME: actions
-
 jobs:
   test:
-    #Defining env variable on test level
-    env:
-      MONGODB_CLUSTER_ADDRESS: cluster0.nba51dt.mongodb.net
-      MONGODB_USERNAME: ajaya
-      MONGODB_PASSWORD: Ajayakc13101
-      PORT: 8080
     environment: testing
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
         uses: actions/checkout@v3
-        with:
-          path: nodeapp/
-      - name: List files
-        run: ls -la
-      - name: Move Nodeapp Contents
-        run: |
-          # Navigate to the "nodeapp" folder
-          mv nodeapp/* ../
-          ls -la
-
-          # Remove the now-empty "nodeapp" folder
-          rm -rf ../nodeapp
-      - name: List files
-        run: ls -la
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
@@ -46,17 +19,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run server
-        run: npm start & npx wait-on http://127.0.0.1:$PORT
+        run: npm start & npx wait-on http://127.0.0.1:XYZ
       - name: Run tests
         run: npm test
       - name: Output information
-        run: |
-          echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
+        run: echo "..."
   deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Output information
-        run: |
-          echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
-          echo "MONGODB_DB_NAME: ${{ env.MONGODB_DB_NAME }}"
+        run: |        
+          echo "..."
