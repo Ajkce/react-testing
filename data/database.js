@@ -9,7 +9,7 @@ const uri = `mongodb+srv://ajaya:Ajayakc13101@cluster0.nba51dt.mongodb.net/?retr
 
 const client = new MongoClient(uri);
 
-console.log("Trying to connect to db");
+console.log("Trying to connect to db w");
 
 try {
   await client.connect();
