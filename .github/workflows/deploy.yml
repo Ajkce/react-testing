@@ -31,7 +31,7 @@ jobs:
       - name: Move Nodeapp Contents
         run: |
           # Navigate to the "nodeapp" folder
-          mv nodeapp/* ../
+          mv nodeapp/* .
           ls -la
 
           # Remove the now-empty "nodeapp" folder
