@@ -1,6 +1,8 @@
 name: Deployment
 on:
   push:
+    paths:
+      - "actions/**"
     branches:
       - main
       - dev
@@ -29,5 +31,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output information
-        run: |        
+        run: |
           echo "..."
