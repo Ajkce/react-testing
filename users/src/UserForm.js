@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 
-const UserForm = () => {
+const UserForm = ({ onUserAdd }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(name, email)
-  }
+    onUserAdd({ name, email });
+  };
 
   return (
     <form action="" onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="">Name</label>
+        <label htmlFor="">Name </label>
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -21,7 +21,7 @@ const UserForm = () => {
         />
       </div>
       <div>
-        <label htmlFor="">name</label>
+        <label htmlFor="">Email </label>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
