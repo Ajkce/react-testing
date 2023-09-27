@@ -42,6 +42,9 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
       - name: Cache dependencies
         id: cache
         uses: actions/cache@v3
