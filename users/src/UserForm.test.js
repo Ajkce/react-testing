@@ -16,22 +16,20 @@ test("It shows two inputs and a button", () => {
 });
 
 test("It call the onuseradd when the function is sumbitted", () => {
-  //Callback
-  const argList = [];
-  const callback = (...args) => {
-    argList.push(args);
-  };
+  const mock = jest.fn();
 
-  render(<UserForm onUserAdd={callback}></UserForm>);
+  render(<UserForm onUserAdd={mock}></UserForm>);
 
-  const [nameInput, emailInput] = screen.getAllByRole("textbox");
+  // const [nameInput, emailInput] = screen.getAllByRole("textbox");
+  const name = screen.getByRole("textbox", { name: /name/i });
+  const email = screen.getByRole("textbox", { name: /email/i });
 
   //Simulate Typeing inside the input
 
-  user.click(nameInput);
+  user.click(name);
   user.keyboard("jane");
 
-  user.click(emailInput);
+  user.click(email);
   user.keyboard("jane@jane.com");
 
   //FInd the button
@@ -39,6 +37,6 @@ test("It call the onuseradd when the function is sumbitted", () => {
   user.click(button);
 
   //Assertion to make sure 'onUserAdd' gets called with email/name
-  expect(argList).toHaveLength(1);
-  expect(argList[0][0]).toEqual({ name: "jane", email: "jane@jane.com" });
+  expect(mock).toHaveBeenCalled();
+  expect(mock).toHaveBeenCalledWith({ name: "jane", email: "jane@jane.com" });
 });
