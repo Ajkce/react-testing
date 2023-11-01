@@ -1,4 +1,4 @@
-import { screen, render, act } from "@testing-library/react";
+import { screen, render, act, findByRole } from "@testing-library/react";
 import RepositoriesListItem from "./RepositoriesListItem";
 import { MemoryRouter } from "react-router-dom";
 
@@ -14,7 +14,9 @@ function renderComponent() {
     full_name: "Facebook/react",
     language: "Javascript",
     description: "This is the react project",
-    owner: "Facebook",
+    owner: {
+      login: "facebook",
+    },
     name: "React",
     html_url: "https://github.com/formio/react",
   };
@@ -46,10 +48,30 @@ test("Display the github link for the repository", async () => {
   expect(link).toHaveAttribute("href", repositories.html_url);
 });
 
-const pause = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
+test("Check if the appropraite fileIcon is present", async () => {
+  renderComponent();
+
+  const fileIcon = await screen.findByRole("img", { name: "Javascript" });
+  expect(fileIcon).toHaveClass("js-icon");
+});
+
+test("Shows a link to the code editor page", async () => {
+  const { repositories } = renderComponent();
+
+  const link = await screen.findByRole("link", {
+    name: new RegExp(repositories.owner.login),
   });
-};
+
+  expect(link).toHaveAttribute(
+    "href",
+    `/repositories/${repositories.full_name}`
+  );
+});
+
+// const pause = () => {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve();
+//     }, 1000);
+//   });
+// };
