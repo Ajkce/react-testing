@@ -44,7 +44,7 @@ test("Display the github link for the repository", async () => {
   //   await pause();
   // });
 
-  const link = screen.getByRole("link", { name: /github repository/i });
+  const link = await screen.findByRole("link", { name: /github repository/i });
   expect(link).toHaveAttribute("href", repositories.html_url);
 });
 
@@ -58,11 +58,13 @@ test("Check if the appropraite fileIcon is present", async () => {
 test("Shows a link to the code editor page", async () => {
   const { repositories } = renderComponent();
 
+  await screen.findByRole("img", { name: /javascript/i });
+
   const link = await screen.findByRole("link", {
     name: new RegExp(repositories.owner.login),
   });
 
-  expect(link).toHaveAttribute(
+  await expect(link).toHaveAttribute(
     "href",
     `/repositories/${repositories.full_name}`
   );
